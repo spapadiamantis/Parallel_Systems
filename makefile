@@ -1,8 +1,9 @@
 CC = mpicc
 CPPFLAGS = -g
-HEADERS = mpiFunctions.h
-SRC =  convolution.c mpiFunctions.c
-OBJS =  convolution.o mpiFunctions.o
+LIBS = -lm
+HEADERS = convolution.h mpiFunctions.h
+SRC =  main.c convolution.c mpiFunctions.c
+OBJS =  main.o convolution.o mpiFunctions.o
 
 all: convolution
 
@@ -10,7 +11,7 @@ all: convolution
 	$(CC) -c $< $ $
 	
 convolution: $(OBJS)
-	$(CC) $(CPPFLAGS) -o $@ $(OBJS)
+	$(CC) $(CPPFLAGS) -o $@ $(OBJS) $(LIBS)
 
 clean:
 	rm -f $(OBJS)
